@@ -1,18 +1,8 @@
-DE PROTACE WEBSITE UPDATE
+DE PROTACE FAVICON FIX
 
-Files:
-- index.html: updated website, SEO metadata and social sharing buttons
-- sitemap.xml: sitemap for search engines
-- robots.txt: allows search engines to crawl the public website
+Upload BOTH files to the ROOT of your GitHub repository:
+- index.html (replace the existing one)
+- favicon.svg (new file)
 
-HOW TO PUBLISH:
-1. Open your GitHub repository: deprotace-dotcom.github.io
-2. Upload these three files to the repository root.
-3. If GitHub asks what to do with index.html, choose to replace/overwrite the existing file.
-4. Commit changes.
-5. Wait for GitHub Pages to deploy, then visit https://deprotace-dotcom.github.io/
-
-IMPORTANT:
-- Keep the repository public and GitHub Pages set to main / (root).
-- Google indexing is not instant. After publishing, submit
-  https://deprotace-dotcom.github.io/sitemap.xml in Google Search Console.
+Then commit changes and wait for GitHub Pages to deploy.
+Refresh the website with Ctrl+Shift+R. Browser tabs may take a little while to refresh their favicon cache.
