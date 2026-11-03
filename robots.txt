@@ -1,1 +1,4 @@
-User-agent: *\nAllow: /\n\nSitemap: https://deprotace-dotcom.github.io/sitemap.xml\n
+User-agent: *
+Allow: /
+
+Sitemap: https://deprotace-dotcom.github.io/sitemap.xml
