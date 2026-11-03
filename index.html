@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="DE PROTACE — Web development, software design and AI projects. Let's build something great.">
+  <meta name="theme-color" content="#070b16">
+  <title>DE PROTACE | Web Developer & Digital Creator</title>
+  <style>
+    :root {
+      --bg: #070b16;
+      --panel: rgba(15, 24, 44, .78);
+      --panel-2: #101a30;
+      --text: #edf5ff;
+      --muted: #9aabc4;
+      --cyan: #37e6ff;
+      --blue: #5578ff;
+      --line: rgba(112, 169, 220, .18);
+      --glow: 0 0 35px rgba(55, 230, 255, .18);
+      --radius: 22px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; color: var(--text); background:
+        radial-gradient(circle at 80% 10%, rgba(41, 91, 190, .18), transparent 30%),
+        radial-gradient(circle at 10% 40%, rgba(0, 211, 235, .09), transparent 28%), var(--bg);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6; overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1120px, calc(100% - 40px)); margin: auto; }
+    .nav-wrap { position: sticky; top: 0; z-index: 20; backdrop-filter: blur(18px); background: rgba(7,11,22,.78); border-bottom: 1px solid var(--line); }
+    nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .brand { font-weight: 900; letter-spacing: .13em; font-size: 1.05rem; }
+    .brand span { color: var(--cyan); text-shadow: 0 0 18px rgba(55,230,255,.55); }
+    .nav-links { display: flex; gap: 26px; align-items: center; color: var(--muted); font-size: .92rem; }
+    .nav-links a:hover { color: var(--cyan); }
+    .menu-btn { display: none; color: var(--text); background: transparent; border: 1px solid var(--line); border-radius: 10px; padding: 8px 12px; font-size: 1.1rem; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; padding: 13px 20px; border-radius: 12px; font-weight: 800; border: 1px solid transparent; transition: .2s ease; cursor: pointer; }
+    .btn-primary { color: #041019; background: linear-gradient(110deg, var(--cyan), #78a2ff); box-shadow: 0 8px 30px rgba(55,230,255,.18); }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 35px rgba(55,230,255,.3); }
+    .btn-outline { border-color: rgba(55,230,255,.45); color: var(--cyan); background: rgba(55,230,255,.04); }
+    .btn-outline:hover { background: rgba(55,230,255,.12); }
+    .hero { min-height: 690px; display: grid; grid-template-columns: 1.15fr .85fr; align-items: center; gap: 50px; padding-top: 70px; padding-bottom: 90px; }
+    .eyebrow { color: var(--cyan); text-transform: uppercase; letter-spacing: .2em; font-size: .76rem; font-weight: 900; }
+    h1 { font-size: clamp(3rem, 7vw, 5.7rem); line-height: .99; letter-spacing: -.065em; margin: 18px 0 24px; }
+    h1 .gradient { background: linear-gradient(100deg, #fff 10%, var(--cyan) 55%, #7793ff 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .hero-copy { color: var(--muted); max-width: 600px; font-size: 1.08rem; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 13px; margin-top: 30px; }
+    .availability { display: inline-flex; align-items: center; gap: 9px; color: #b6c8dc; font-size: .85rem; margin-top: 28px; }
+    .dot { width: 8px; height: 8px; background: #52f5b2; border-radius: 50%; box-shadow: 0 0 13px #52f5b2; }
+    .visual { position: relative; min-height: 430px; display: grid; place-items: center; }
+    .orbit { position: absolute; width: min(390px, 90vw); aspect-ratio: 1; border: 1px solid rgba(55,230,255,.25); border-radius: 50%; box-shadow: inset 0 0 55px rgba(55,230,255,.06), 0 0 50px rgba(55,230,255,.06); animation: rotate 24s linear infinite; }
+    .orbit:before, .orbit:after { content: ""; position: absolute; border: 1px solid rgba(112,143,255,.28); border-radius: 50%; inset: 35px; transform: rotateX(68deg); }
+    .orbit:after { inset: 75px; transform: rotateY(68deg); }
+    @keyframes rotate { to { transform: rotate(360deg); } }
+    .core { width: 225px; aspect-ratio: 1; display: grid; place-items: center; text-align: center; border-radius: 32px; background: linear-gradient(145deg, rgba(20,43,73,.95), rgba(8,15,31,.96)); border: 1px solid rgba(55,230,255,.45); box-shadow: 0 0 80px rgba(55,230,255,.2), inset 0 0 35px rgba(55,230,255,.08); transform: rotate(-8deg); }
+    .core strong { display: block; font-size: 2.25rem; letter-spacing: .12em; line-height: 1; }
+    .core small { color: var(--cyan); letter-spacing: .22em; font-weight: 800; }
+    .float-tag { position: absolute; padding: 10px 14px; border: 1px solid var(--line); background: rgba(13,24,43,.9); border-radius: 12px; color: #c7d9ec; font-size: .8rem; box-shadow: var(--glow); }
+    .tag-one { top: 13%; right: 0; } .tag-two { bottom: 14%; left: 0; }
+    section { padding: 85px 0; }
+    .section-head { max-width: 650px; margin-bottom: 36px; }
+    .section-head h2 { font-size: clamp(2rem, 4vw, 3.1rem); line-height: 1.1; letter-spacing: -.04em; margin: 10px 0; }
+    .section-head p { color: var(--muted); margin: 0; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .card { background: linear-gradient(145deg, rgba(18,31,54,.88), rgba(10,17,32,.88)); border: 1px solid var(--line); border-radius: var(--radius); padding: 25px; transition: .25s ease; }
+    .card:hover { transform: translateY(-5px); border-color: rgba(55,230,255,.45); box-shadow: var(--glow); }
+    .icon { width: 46px; height: 46px; display: grid; place-items: center; border-radius: 13px; color: var(--cyan); background: rgba(55,230,255,.09); border: 1px solid rgba(55,230,255,.2); font-size: 1.25rem; }
+    .card h3 { margin: 18px 0 8px; font-size: 1.15rem; }
+    .card p { color: var(--muted); margin: 0; font-size: .94rem; }
+    .project-card { padding: 0; overflow: hidden; }
+    .project-art { min-height: 175px; display: grid; place-items: center; background: radial-gradient(circle at 50% 40%, rgba(55,230,255,.18), transparent 48%), linear-gradient(135deg, #101f3a, #090f20); border-bottom: 1px solid var(--line); }
+    .project-art .monogram { font-size: 2.4rem; font-weight: 950; letter-spacing: .14em; color: var(--cyan); text-shadow: 0 0 25px rgba(55,230,255,.5); }
+    .project-content { padding: 23px; }
+    .project-content p { color: var(--muted); font-size: .93rem; }
+    .project-link { color: var(--cyan); font-weight: 800; font-size: .9rem; }
+    .about { display: grid; grid-template-columns: .8fr 1.2fr; gap: 55px; align-items: center; }
+    .about-panel { border: 1px solid var(--line); border-radius: var(--radius); padding: 30px; background: linear-gradient(145deg, rgba(16,31,55,.9), rgba(8,14,27,.9)); }
+    .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 18px; }
+    .stat { border: 1px solid var(--line); border-radius: 14px; padding: 16px; }
+    .stat strong { display: block; color: var(--cyan); font-size: 1.45rem; }
+    .stat span { color: var(--muted); font-size: .82rem; }
+    .about-copy p { color: var(--muted); }
+    .chips { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 22px; }
+    .chip { border: 1px solid var(--line); border-radius: 999px; padding: 7px 12px; color: #c4d7ea; font-size: .8rem; background: rgba(255,255,255,.025); }
+    .contact-box { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; align-items: center; border: 1px solid rgba(55,230,255,.25); border-radius: 28px; padding: clamp(25px, 5vw, 48px); background: radial-gradient(circle at 100% 0, rgba(55,230,255,.12), transparent 38%), var(--panel); box-shadow: var(--glow); }
+    .contact-box h2 { font-size: clamp(2rem, 4vw, 3rem); line-height: 1.05; margin: 10px 0; }
+    .contact-box p { color: var(--muted); }
+    .contact-details { display: grid; gap: 12px; }
+    .contact-item { display: flex; align-items: center; gap: 13px; padding: 15px; border: 1px solid var(--line); border-radius: 13px; background: rgba(5,12,25,.45); }
+    .contact-item span { color: var(--muted); display: block; font-size: .78rem; }
+    footer { border-top: 1px solid var(--line); padding: 27px 0; color: var(--muted); font-size: .85rem; }
+    footer .container { display: flex; justify-content: space-between; gap: 15px; flex-wrap: wrap; }
+    .reveal { opacity: 0; transform: translateY(18px); transition: .65s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    @media (max-width: 800px) {
+      .hero { grid-template-columns: 1fr; gap: 10px; padding-top: 65px; text-align: center; }
+      .hero-copy { margin: auto; } .hero-actions, .availability { justify-content: center; }
+      .visual { min-height: 370px; } .grid { grid-template-columns: repeat(2, 1fr); }
+      .about { grid-template-columns: 1fr; gap: 25px; } .contact-box { grid-template-columns: 1fr; }
+      .tag-one { right: 5%; } .tag-two { left: 5%; }
+    }
+    @media (max-width: 560px) {
+      .container { width: min(100% - 30px, 1120px); }
+      nav { min-height: 68px; } .menu-btn { display: block; }
+      .nav-links { display: none; position: absolute; top: 68px; left: 0; right: 0; padding: 18px 22px 22px; background: #0a1121; border-bottom: 1px solid var(--line); flex-direction: column; align-items: flex-start; gap: 17px; }
+      .nav-links.open { display: flex; }
+      .hero { min-height: auto; padding: 70px 0 50px; } h1 { font-size: clamp(2.8rem, 15vw, 4.4rem); }
+      .visual { min-height: 310px; } .orbit { width: 285px; } .core { width: 175px; border-radius: 25px; } .core strong { font-size: 1.8rem; }
+      .float-tag { font-size: .7rem; } section { padding: 62px 0; }
+      .grid { grid-template-columns: 1fr; } .card { padding: 22px; }
+      .project-card { padding: 0; } .stats { grid-template-columns: repeat(2, 1fr); }
+      .hero-actions .btn { width: 100%; } .contact-box { padding: 24px; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+  </style>
+</head>
+<body>
+  <div class="nav-wrap">
+    <nav class="container" aria-label="Main navigation">
+      <a class="brand" href="#home">DE <span>PROTACE</span></a>
+      <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+      <div class="nav-links" id="navLinks">
+        <a href="#home">Home</a><a href="#services">Services</a><a href="#projects">Projects</a><a href="#about">About</a><a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </div>
+
+  <main>
+    <header class="container hero" id="home">
+      <div class="reveal">
+        <div class="eyebrow">Independent Developer · Tanzania</div>
+        <h1>Ideas into<br><span class="gradient">digital reality.</span></h1>
+        <p class="hero-copy">I'm DE PROTACE — a web developer and digital creator focused on building modern websites, thoughtful software experiences and AI-powered ideas.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#contact">Let's work together <span>↗</span></a>
+          <a class="btn btn-outline" href="#projects">Explore my work</a>
+        </div>
+        <div class="availability"><span class="dot"></span> Open to project enquiries and collaborations</div>
+      </div>
+      <div class="visual reveal" aria-label="Abstract DE PROTACE futuristic graphic">
+        <div class="orbit"></div>
+        <div class="core"><div><strong>DE<br>PROTACE</strong><small>CREATE · BUILD · INNOVATE</small></div></div>
+        <div class="float-tag tag-one">✦ Web Development</div>
+        <div class="float-tag tag-two">⌘ Digital Innovation</div>
+      </div>
+    </header>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-head reveal"><div class="eyebrow">What I do</div><h2>Digital solutions built with purpose.</h2><p>From a strong online presence to useful digital products, I turn ideas into experiences people can use.</p></div>
+        <div class="grid">
+          <article class="card reveal"><div class="icon">⌘</div><h3>Website Development</h3><p>Responsive, modern websites for individuals, startups and businesses.</p></article>
+          <article class="card reveal"><div class="icon">✧</div><h3>UI & Software Design</h3><p>Clean interfaces and practical digital experiences designed around users.</p></article>
+          <article class="card reveal"><div class="icon">◈</div><h3>AI Solutions</h3><p>Exploring and building AI-powered tools that make everyday work smarter.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-head reveal"><div class="eyebrow">Selected work</div><h2>Ideas I'm bringing to life.</h2><p>A growing collection of experiments and projects. More work will be added as each project develops.</p></div>
+        <div class="grid">
+          <article class="card project-card reveal">
+            <div class="project-art"><div class="monogram">D.P.AI</div></div>
+            <div class="project-content"><div class="eyebrow">AI · In development</div><h3>DARK PROTACE AI</h3><p>An AI assistant project exploring helpful, accessible digital assistance.</p><span class="project-link">Project in development ↗</span></div>
+          </article>
+          <article class="card project-card reveal">
+            <div class="project-art"><div class="monogram">WEB / 01</div></div>
+            <div class="project-content"><div class="eyebrow">Web · Portfolio</div><h3>Modern Websites</h3><p>Responsive web experiences with clear layouts, strong visual identity and simple navigation.</p><a class="project-link" href="#contact">Discuss a website ↗</a></div>
+          </article>
+          <article class="card project-card reveal">
+            <div class="project-art"><div class="monogram">NEXT+</div></div>
+            <div class="project-content"><div class="eyebrow">Experiments · Learning</div><h3>What's Next</h3><p>New concepts, software experiments and digital ideas are always in progress.</p><a class="project-link" href="#contact">Suggest a collaboration ↗</a></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container about">
+        <div class="about-panel reveal">
+          <div class="eyebrow">The mindset</div>
+          <h2 style="font-size:2rem;line-height:1.12;margin:12px 0">Curiosity drives creation.</h2>
+          <p style="color:var(--muted);margin-bottom:0">Learn continuously. Build thoughtfully. Improve every detail.</p>
+          <div class="stats">
+            <div class="stat"><strong>Web</strong><span>Development focus</span></div>
+            <div class="stat"><strong>AI</strong><span>Emerging technology</span></div>
+          </div>
+        </div>
+        <div class="about-copy reveal">
+          <div class="eyebrow">About DE PROTACE</div>
+          <h2 style="font-size:clamp(2rem,4vw,3rem);line-height:1.1;letter-spacing:-.04em">A creative mind with a passion for technology.</h2>
+          <p>I enjoy turning concepts into useful digital experiences. My focus is on web development, software design and exploring the possibilities of artificial intelligence.</p>
+          <p>Whether you need a new website, want to discuss a digital idea or are interested in collaborating, I'd be glad to hear from you.</p>
+          <div class="chips"><span class="chip">HTML & CSS</span><span class="chip">JavaScript</span><span class="chip">Responsive Design</span><span class="chip">AI Projects</span><span class="chip">Creative Problem Solving</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact-box reveal">
+          <div><div class="eyebrow">Have a project in mind?</div><h2>Let's create something remarkable.</h2><p>Tell me what you're planning. The easiest way to start is to send a message directly.</p><a class="btn btn-primary" href="https://wa.me/255775085291?text=Hello%20DE%20PROTACE%2C%20I%20found%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener">Chat on WhatsApp ↗</a></div>
+          <div class="contact-details">
+            <a class="contact-item" href="mailto:deprotace@gmail.com"><div class="icon">✉</div><div><span>Email</span><strong>deprotace@gmail.com</strong></div></a>
+            <a class="contact-item" href="https://wa.me/255775085291" target="_blank" rel="noopener"><div class="icon">◉</div><div><span>WhatsApp</span><strong>+255 775 085 291</strong></div></a>
+            <div class="contact-item"><div class="icon">⌖</div><div><span>Based in</span><strong>Tanzania</strong></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="container"><span>© <span id="year"></span> DE PROTACE. All rights reserved.</span><span>Designed to build what's next. <span style="color:var(--cyan)">◆</span></span></div></footer>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+    menuBtn.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', String(open));
+    });
+    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }));
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
