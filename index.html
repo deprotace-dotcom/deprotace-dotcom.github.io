@@ -4,6 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="DE PROTACE — Web development, software design and AI projects. Let's build something great.">
+  <link rel="canonical" href="https://deprotace-dotcom.github.io/">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="DE PROTACE">
+  <meta property="og:title" content="DE PROTACE | Web Developer & Digital Creator">
+  <meta property="og:description" content="Explore DE PROTACE web development, software design and AI projects.">
+  <meta property="og:url" content="https://deprotace-dotcom.github.io/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="DE PROTACE | Web Developer & Digital Creator">
+  <meta name="twitter:description" content="Explore web development, software design and AI projects by DE PROTACE.">
   <meta name="theme-color" content="#070b16">
   <title>DE PROTACE | Web Developer & Digital Creator</title>
   <style>
@@ -123,7 +133,7 @@
       <a class="brand" href="#home">DE <span>PROTACE</span></a>
       <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation" aria-expanded="false">☰</button>
       <div class="nav-links" id="navLinks">
-        <a href="#home">Home</a><a href="#services">Services</a><a href="#projects">Projects</a><a href="#about">About</a><a href="#contact">Contact</a>
+        <a href="#home">Home</a><a href="#services">Services</a><a href="#projects">Projects</a><a href="#about">About</a><a href="#share">Share</a><a href="#contact">Contact</a>
       </div>
     </nav>
   </div>
@@ -200,6 +210,24 @@
       </div>
     </section>
 
+
+    <section id="share">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="eyebrow">Spread the word</div>
+          <h2>Share DE PROTACE.</h2>
+          <p>Know someone who needs a website or a digital solution? Share this portfolio with them.</p>
+        </div>
+        <div class="hero-actions reveal" aria-label="Share DE PROTACE website">
+          <button class="btn btn-primary" id="copyLinkBtn" type="button">Copy website link</button>
+          <a class="btn btn-outline" href="https://wa.me/?text=Explore%20DE%20PROTACE%3A%20https%3A%2F%2Fdeprotace-dotcom.github.io%2F" target="_blank" rel="noopener noreferrer">Share on WhatsApp ↗</a>
+          <a class="btn btn-outline" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdeprotace-dotcom.github.io%2F" target="_blank" rel="noopener noreferrer">Share on Facebook ↗</a>
+          <a class="btn btn-outline" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fdeprotace-dotcom.github.io%2F" target="_blank" rel="noopener noreferrer">Share on LinkedIn ↗</a>
+        </div>
+        <p id="copyStatus" class="hero-copy" role="status" aria-live="polite"></p>
+      </div>
+    </section>
+
     <section id="contact">
       <div class="container">
         <div class="contact-box reveal">
@@ -227,6 +255,18 @@
       navLinks.classList.remove('open');
       menuBtn.setAttribute('aria-expanded', 'false');
     }));
+
+    const copyLinkBtn = document.getElementById('copyLinkBtn');
+    const copyStatus = document.getElementById('copyStatus');
+    copyLinkBtn.addEventListener('click', async () => {
+      const siteUrl = 'https://deprotace-dotcom.github.io/';
+      try {
+        await navigator.clipboard.writeText(siteUrl);
+        copyStatus.textContent = 'Website link copied. You can now paste and share it.';
+      } catch (error) {
+        copyStatus.textContent = 'Copy was blocked by your browser. Copy this link: ' + siteUrl;
+      }
+    });
     document.getElementById('year').textContent = new Date().getFullYear();
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
